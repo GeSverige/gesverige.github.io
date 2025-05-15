@@ -13,42 +13,42 @@
     "id": "wwf",
     "namn": "WWF",
     "logo": "assets/wwf.png"
-  }
+  },
   {
   "id": "brostcancerforbundet",
   "namn": "Bröstcancerförbundet",
   "logo": "assets/oscar.png"
-}
+},
   {
   "id": "rodakorset",
   "namn": "RödaKorset",
   "logo": "assets/oscar.png"
-}
+},
   {
   "id": "unicef",
   "namn": "Unicef",
   "logo": "assets/oscar.png"
-}
+},
   {
   "id": "bris",
   "namn": "BRIS",
   "logo": "assets/oscar.png"
-}
+},
   {
   "id": "hjarnfonden",
   "namn": "Hjärnfonden",
   "logo": "assets/oscar.png"
-}
+},
   {
   "id": "djurensratt",
   "namn": "Djurens Rätt",
   "logo": "assets/oscar.png"
-}
+},
 {
   "id": "cancerfonden",
   "namn": "Cancerfonden",
   "logo": "assets/oscar.png"
-}
+},
   {
   "id": "naturskyddsforeningen",
   "namn": "Naturskyddsföreningen",
