@@ -15,6 +15,11 @@
     "kategori": "Skönhet"
   },
   {
+    "namn": "ELON",
+    "lank": "https://www.elon.se/",
+    "kategori": "Elektronik"
+  },
+  {
     "namn": "Apoteket",
     "lank": "https://www.cdon.se",
     "kategori": "Hälsa"
