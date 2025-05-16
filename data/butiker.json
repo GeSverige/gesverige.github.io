@@ -10,7 +10,7 @@
   {
     "namn": "LYKO",
     "lank": "https://www.nike.com"
-  }
+  },
   {
     "namn": "Apoteket",
     "lank": "https://www.cdon.se"
@@ -18,21 +18,5 @@
   {
     "namn": "Svenskt Kosttillskott",
     "lank": "https://www.cdon.se"
-  },
-  {
-    "namn": "Kicks",
-    "lank": "https://www.cdon.se"
-  },
-  {
-    "namn": "Xlash",
-    "lank": "https://www.cdon.se"
-  },
-  {
-    "namn": "Gymgrossisten",
-    "lank": "https://www.cdon.se"
-  },
-  {
-    "namn": "Tyngre",
-    "lank": "https://www.cdon.se"
-  },
+  }
 ]
