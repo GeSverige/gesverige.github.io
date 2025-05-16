@@ -1,7 +1,7 @@
 [
   {
     "namn": "MEDS",
-    "lank": "https://www.cdon.se",
+    "lank": "https://www.meds.se/",
     "kategori": "Hälsa"
   },
   {
@@ -13,6 +13,11 @@
     "namn": "LYKO",
     "lank": "https://www.nike.com",
     "kategori": "Skönhet"
+  },
+  {
+    "namn": "Hemköp",
+    "lank": "https://www.hemkop.se/",
+    "kategori": "Mat"
   },
   {
     "namn": "ELON",
