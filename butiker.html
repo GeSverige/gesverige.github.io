@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Sök butik | GeSverige</title>
+  <style>
+    body { font-family: sans-serif; padding: 40px; background: #f9f9f9; text-align: center; }
+    h1 { color: #333; }
+    #searchInput {
+      width: 80%;
+      max-width: 400px;
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 30px;
+    }
+    .kategori {
+      margin-top: 30px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .kategori h2 {
+      color: #444;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    .store-link {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      background-color: #111;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .store-link:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sök butik</h1>
+  <input type="text" id="searchInput" placeholder="Skriv butikens namn...">
+  <div id="results"></div>
+
+  <script>
+    let stores = [];
+    fetch('data/butiker.json')
+      .then(res => res.json())
+      .then(data => {
+        stores = data;
+        renderStores("");
+      });
+
+    const input = document.getElementById("searchInput");
+    input.addEventListener("input", () => {
+      renderStores(input.value);
+    });
+
+    function renderStores(filter) {
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+      const charity = localStorage.getItem('selectedCharity') || 'okand';
+
+      if (filter) {
+        const filtered = stores.filter(s => s.namn.toLowerCase().includes(filter.toLowerCase()));
+        filtered.forEach(s => {
+          const a = document.createElement("a");
+          a.href = s.lank + "?subid=" + charity;
+          a.className = "store-link";
+          a.target = "_blank";
+          a.textContent = s.namn;
+          results.appendChild(a);
+        });
+      } else {
+        const grupperade = {};
+        stores.forEach(s => {
+          if (!grupperade[s.kategori]) grupperade[s.kategori] = [];
+          grupperade[s.kategori].push(s);
+        });
+
+        for (let kategori in grupperade) {
+          const container = document.createElement("div");
+          container.className = "kategori";
+          const title = document.createElement("h2");
+          title.textContent = kategori;
+          container.appendChild(title);
+
+          grupperade[kategori].forEach(s => {
+            const a = document.createElement("a");
+            a.href = s.lank + "?subid=" + charity;
+            a.className = "store-link";
+            a.target = "_blank";
+            a.textContent = s.namn;
+            container.appendChild(a);
+          });
+
+          results.appendChild(container);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
