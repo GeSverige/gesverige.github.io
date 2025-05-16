@@ -30,18 +30,18 @@
     "kategori": "Hälsa"
   },
   {
-    "namn": "Nike",
-    "lank": "https://www.nike.com",
-    "kategori": "Sport"
+    "namn": "PN Jakt",
+    "lank": "https://pnjakt.se/",
+    "kategori": "Sport & Fritid"
   },
   {
-    "namn": "Stadium",
-    "lank": "https://www.stadium.se",
-    "kategori": "Sport"
+    "namn": "NordicaGolf",
+    "lank": "https://www.nordicagolf.se/",
+    "kategori": "Sport & Fritid"
   },
   {
-    "namn": "H&M",
-    "lank": "https://www.hm.com",
-    "kategori": "Mode"
+    "namn": "Nordicpadel",
+    "lank": "https://nordicpadel.com/sv/",
+    "kategori": "Sport & Fritid"
   }
 ]
