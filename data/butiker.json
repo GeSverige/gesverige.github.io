@@ -10,6 +10,31 @@
     "kategori": "Hälsa"
   },
   {
+    "namn": "Nordiska Kompaniet(NK)",
+    "lank": "https://www.nk.se/",
+    "kategori": "Mode"
+  },
+  {
+    "namn": "Lindex",
+    "lank": "https://www.lindex.com/se/",
+    "kategori": "Mode"
+  },
+  {
+    "namn": "MQ Marqet",
+    "lank": "https://www.mq.se/",
+    "kategori": "Mode"
+  },
+  {
+    "namn": "Gina Tricot",
+    "lank": "https://www.ginatricot.com/se",
+    "kategori": "Mode"
+  },
+  {
+    "namn": "Bubbleroom",
+    "lank": "https://www.bubbleroom.se/",
+    "kategori": "Mode"
+  },
+  {
     "namn": "LYKO",
     "lank": "https://lyko.com/sv",
     "kategori": "Skönhet"
