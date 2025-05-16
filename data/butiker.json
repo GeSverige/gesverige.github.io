@@ -1,0 +1,42 @@
+[
+  {
+    "namn": "MEDS",
+    "lank": "https://www.cdon.se",
+    "kategori": "Hälsa"
+  },
+  {
+    "namn": "Apotea",
+    "lank": "https://www.apotea.se",
+    "kategori": "Hälsa"
+  },
+  {
+    "namn": "LYKO",
+    "lank": "https://www.nike.com",
+    "kategori": "Skönhet"
+  },
+  {
+    "namn": "Apoteket",
+    "lank": "https://www.cdon.se",
+    "kategori": "Hälsa"
+  },
+  {
+    "namn": "Svenskt Kosttillskott",
+    "lank": "https://www.cdon.se",
+    "kategori": "Hälsa"
+  },
+  {
+    "namn": "Nike",
+    "lank": "https://www.nike.com",
+    "kategori": "Sport"
+  },
+  {
+    "namn": "Stadium",
+    "lank": "https://www.stadium.se",
+    "kategori": "Sport"
+  },
+  {
+    "namn": "H&M",
+    "lank": "https://www.hm.com",
+    "kategori": "Mode"
+  }
+]
