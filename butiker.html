@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Välj butik</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    h1 {
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    .nivå {
+      margin-bottom: 2rem;
+    }
+    .kategori {
+      margin-bottom: 1rem;
+    }
+    .butik {
+      margin-left: 1rem;
+      padding: 0.25rem;
+      cursor: pointer;
+    }
+    .butik:hover {
+      background-color: #e0f7fa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Välj en butik att handla från</h1>
+  <input type="text" id="search" placeholder="Sök butik...">
+
+  <div id="butikerContainer"></div>
+
+  <script>
+    let butikerData = [];
+
+    fetch('data/butiker.json')
+      .then(res => res.json())
+      .then(data => {
+        butikerData = data;
+        renderButiker("");
+      });
+
+    document.getElementById("search").addEventListener("input", (e) => {
+      renderButiker(e.target.value.toLowerCase());
+    });
+
+    function renderButiker(query) {
+      const container = document.getElementById("butikerContainer");
+      container.innerHTML = "";
+
+      const nivåer = ["Guld", "Silver", "Brons"];
+      const grupperade = {};
+
+      nivåer.forEach(nivå => {
+        grupperade[nivå] = {};
+      });
+
+      butikerData.forEach(butik => {
+        if (butik.namn.toLowerCase().includes(query)) {
+          if (!grupperade[butik.nivå][butik.kategori]) {
+            grupperade[butik.nivå][butik.kategori] = [];
+          }
+          grupperade[butik.nivå][butik.kategori].push(butik);
+        }
+      });
+
+      nivåer.forEach(nivå => {
+        const nivåSektion = document.createElement("div");
+        nivåSektion.classList.add("nivå");
+        const nivåRubrik = document.createElement("h2");
+        nivåRubrik.textContent = nivå + "-partners";
+        nivåSektion.appendChild(nivåRubrik);
+
+        for (const kategori in grupperade[nivå]) {
+          const kategoriSektion = document.createElement("div");
+          kategoriSektion.classList.add("kategori");
+          const katRubrik = document.createElement("h3");
+          katRubrik.textContent = kategori;
+          kategoriSektion.appendChild(katRubrik);
+
+          grupperade[nivå][kategori].forEach(butik => {
+            const butikEl = document.createElement("div");
+            butikEl.classList.add("butik");
+            butikEl.textContent = butik.namn;
+            butikEl.onclick = () => {
+              window.location.href = `go.html?butik=${butik.id}`;
+            };
+            kategoriSektion.appendChild(butikEl);
+          });
+
+          nivåSektion.appendChild(kategoriSektion);
+        }
+
+        container.appendChild(nivåSektion);
+      });
+    }
+  </script>
+</body>
+</html>
