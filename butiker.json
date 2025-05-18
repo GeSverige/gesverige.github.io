@@ -1,0 +1,26 @@
+[
+  {
+    "id": "nike",
+    "namn": "Nike",
+    "kategori": "Sport",
+    "nivå": "Guld",
+    "länk": "https://nike.com?ref=gesverige",
+    "ersättning": 3.0
+  },
+  {
+    "id": "apotea",
+    "namn": "Apotea",
+    "kategori": "Hälsa",
+    "nivå": "Guld",
+    "länk": "https://apotea.se?ref=gesverige",
+    "ersättning": 2.0
+  },
+  {
+    "id": "zalando",
+    "namn": "Zalando",
+    "kategori": "Mode",
+    "nivå": "Silver",
+    "länk": "https://zalando.se?ref=gesverige",
+    "ersättning": 1.5
+  }
+]
