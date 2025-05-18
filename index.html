@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Välj organisation eller förening</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem;
+    }
+    h1 {
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .column {
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      border: 1px solid #ccc;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    li {
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    li:hover {
+      background: #f0f0f0;
+    }
+    .selected {
+      background-color: #d0f0d0 !important;
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Välj en organisation <strong>eller</strong> en idrottsförening</h1>
+  <div class="container">
+    <div class="column">
+      <input type="text" id="orgSearch" placeholder="Sök organisation...">
+      <ul id="orgList"></ul>
+    </div>
+    <div class="column">
+      <input type="text" id="forSearch" placeholder="Sök förening...">
+      <ul id="forList"></ul>
+    </div>
+  </div>
+  <button onclick="confirmSelection()">Fortsätt</button>
+
+  <script>
+    let selectedId = null;
+
+    function renderList(data, listId, searchId, type) {
+      const list = document.getElementById(listId);
+      const search = document.getElementById(searchId);
+      function updateList() {
+        const filtered = data.filter(item => item.namn.toLowerCase().includes(search.value.toLowerCase()));
+        list.innerHTML = "";
+        filtered.forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = item.namn;
+          li.onclick = () => {
+            selectedId = item.id;
+
+            document.querySelectorAll("li").forEach(el => el.classList.remove("selected"));
+            li.classList.add("selected");
+          };
+          list.appendChild(li);
+        });
+      }
+      search.addEventListener("input", updateList);
+      updateList();
+    }
+
+    fetch('data/organisationer.json')
+      .then(res => res.json())
+      .then(data => renderList(data, 'orgList', 'orgSearch', 'org'));
+
+    fetch('data/foreningar.json')
+      .then(res => res.json())
+      .then(data => renderList(data, 'forList', 'forSearch', 'for'));
+
+    function confirmSelection() {
+      if (!selectedId) {
+        alert("Vänligen välj en organisation eller förening.");
+        return;
+      }
+      localStorage.setItem('val_mottagare', selectedId);
+      window.location.href = "butiker.html";
+    }
+  </script>
+</body>
+</html>
