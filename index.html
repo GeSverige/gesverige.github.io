@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>GeSverige – Välj en organisation</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    main {
+      padding: 2rem;
+      max-width: 720px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    li:hover {
+      background: #e6f4ea;
+    }
+    .selected {
+      background-color: #b2dfb2 !important;
+      font-weight: bold;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 4px;
+      background: #fff;
+    }
+    button {
+      display: block;
+      margin: 2rem auto 0 auto;
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #3f9444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    GeSverige – Välj en organisation
+  </header>
+  <main>
+    <h1>Välj den organisation du vill stötta</h1>
+    <input type="text" id="orgSearch" placeholder="Sök organisation...">
+    <ul id="orgList"></ul>
+    <button onclick="confirmSelection()">Fortsätt</button>
+  </main>
+
+  <script>
+    let selectedId = null;
+
+    function renderList(data) {
+      const list = document.getElementById("orgList");
+      const search = document.getElementById("orgSearch");
+
+      function updateList() {
+        const filtered = data.filter(item =>
+          item.namn.toLowerCase().includes(search.value.toLowerCase())
+        );
+        list.innerHTML = "";
+        filtered.forEach(item => {
+          const li = document.createElement("li");
+          li.innerHTML = '<img class="logo" src="' + item.logo + '" alt="logo"> ' + item.namn;
+          li.onclick = () => {
+            selectedId = item.id;
+            document.querySelectorAll("li").forEach(el => el.classList.remove("selected"));
+            li.classList.add("selected");
+          };
+          list.appendChild(li);
+        });
+      }
+
+      search.addEventListener("input", updateList);
+      updateList();
+    }
+
+    fetch('data/organisationer.json')
+      .then(res => res.json())
+      .then(data => renderList(data));
+
+    function confirmSelection() {
+      if (!selectedId) {
+        alert("Vänligen välj en organisation.");
+        return;
+      }
+      localStorage.setItem('val_mottagare', selectedId);
+      window.location.href = "butiker.html";
+    }
+  </script>
+</body>
+</html>
